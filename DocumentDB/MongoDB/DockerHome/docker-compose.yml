@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: mongo:5.0.6
+    container_name: mongo-db
+    environment:
+      - MONGO_INITDB_DATABASE=movielens
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports:
+      - "27017-27019:27017-27019"
+    volumes:
+      - type: bind
+        source: ./DataDir
+        target: /data/db
+      - type: bind
+        source: ./BackupDir
+        target: /var/backups
