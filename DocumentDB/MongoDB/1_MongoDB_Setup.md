@@ -126,8 +126,91 @@ db.help()
 # Erste Interaktion mit den Daten
 Man kann JavaScript Code direkt in der Mongo-Shell ausführen, d.h. auch typische Sprachkonstrukte, wie z.B. Schleifen. Für Web-Entwickler ist dieses Vorgehen daher besonders intuitiv.
 
-> **_Aufgabe:_** Listen Sie die vorhandenen Collections in der "movielens" Datenbank auf und selektieren Sie 10 Einträge der "movies" Collection:
+> **_Aufgabe:_** Listen Sie die vorhandenen Collections in der "movielens" Datenbank auf und selektieren Sie 10 Einträge der "movies" und "users" Collection:
 
 ![MongoDB First Query](gfx/mongodb_first_query.png)
 
+
+## Einfache Joins mit dem Aggregation-Framework
+Neben dem MapReduce Framework bietet MongoDB das sogenannte Aggregation-Framework. Dies ist die empfohlene Variante für analytische Queries und Join-Operationen. Das Framework basiert auf der Idee von Datenpipelines, die aus 
+ResultSets/Stages und Aggregations-Operationen bestehen.
+
+> **_Aufgabe:_** Selektieren Sie alle Ratings eines beliebigen Users unter Zuhilfenahme des Aggregation-Frameworks. Tipp: Verwenden Sie eine User-ID aus der vorigen Abfrage:
+
+Hinweis: Sie können die Query schrittweise entwickeln, beispielweise mit folgendem Startpunkt in der 1-Seite der 1:n Beziehung:
+```
+db.users.aggregate([
+    // stage 0: select user with id 5
+    {$match: {'_id' : '5'}}
+])
+```
+
+![MongoDB First Query](gfx/User_Ratings_Query1.PNG)
+
+Mithilfe der lookup-Stage kann der Join durchgeführt werden.
+
+```
+db.users.aggregate([
+    // stage 0: select user with id 5
+    {$match: {'_id' : '5'}},
+    // stage 1: lookup user from other collection
+    {$lookup: {
+        'from': 'ratings',
+        'localField': '_id',
+        'foreignField': 'user_id',
+        'as': 'ratings'
+    }},
+])
+```
+
+
+
 Damit ist der erste Teil abgeschlossen. In [Übung 2](2_DocumentDB_Data_Models.md) wird das "Schema" näher betrachtet.
+
+
+## Exkurs: Analytische Queries mit MapReduce
+Für analytische Queries kann das MapReduce Framework verwendet werden. 
+
+![MongoDB MapReduce](gfx/MapReduce.png)
+
+Das MapReduce Framework in MongoDB erwartet JavaScript-Funktionen für den Map- und Reduce-Aspekt einer Abfrage. In der Map-Funktion werden Dokumente auf Key/Value-Paare abgebildet, in der Reduce-Funktion werden die Schlüssel aggregiert.
+
+> **_Aufgabe:_** Ermitteln Sie die Anzahl an Filmen pro Genre pro Jahr im Datenbestand.
+
+Dies entspricht in SQL (mit der Annahme eines zusätzlichen Views):
+```
+SELECT genre, release_year as year, count(1)
+FROM view_movie_genre 
+GROUP BY genre, release_year
+```
+
+Der erste Schritt besteht darin, die Map und Reduce Funktion zu erstellen und dem DBMS bekannt zu machen. Es bietet sich an, die Funktionen zunächst in einem Editor vorzubereiten.
+
+```
+// function that accepts a movie document (and thus can access attributes by using this)
+// this function maps documents to a key that equals the release year (key - release year, value - 1 single genre in this year)
+let mapFunction = function() {
+    let genres = this.genres;
+    let year = this.release_year;
+
+    // split the array into single pairs of year/genre
+    // emit is a built-in function to return values from the map step
+    for (let i=0; i < genres.length; i++) {
+        emit({'year': year, 'genre': genres[i]}, 1);
+    }
+}
+
+let reduceFunction = function(key, values) {
+    return Array.sum(values);
+}
+```
+
+Der Query könnte dann wie folgt inline ausgeführt werden.
+```
+db.movies.mapReduce(mapFunction, reduceFunction, {out: {inline: 1}, query: {}})
+```
+
+![MongoDB MapReduce](gfx/MapReduce_Query1.png)
+
+
+

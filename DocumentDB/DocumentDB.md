@@ -56,6 +56,4 @@ Die Übung umfasst die folgenden Punkte:
 |----------|:-------------:|
 | [Mongo DB - Setup](MongoDB/1_MongoDB_Setup.md) | Aufsetzen der MongoDB Umgebung in Docker, Initialisierung der Beispieldaten |
 | [Mongo DB - Data Model](MongoDB/2_DocumentDB_Data_Models.md) | Diskussion des Datenmodells. |
-| Key/Value Stores |   | Key/Value Stores für die effiziente Verwaltung untypisierter Name/Wert Paare |
-| (Wide) Column Stores |   |  |
-| Graph Database |   |  |
+| [Mongo DB - Queries](MongoDB/3_MongoDB_Queries.md) | MongoDB Queries |
