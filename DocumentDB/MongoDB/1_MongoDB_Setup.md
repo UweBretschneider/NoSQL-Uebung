@@ -163,7 +163,10 @@ db.users.aggregate([
 ])
 ```
 
+![MongoDB First Query](gfx/User_Ratings_Query2.PNG)
 
+Die Performance eines solchen Collection-übergreifenden Queries ist schlechter im Vergleich zu einer de-normalisiertem Struktur, die Nutzer als eingebettete Objekte beinhaltet. 
+Der lookup Operator ist generell teuer und funktioniert nur auf Collections, die nicht auf mehrere Shards verteilt sind.
 
 Damit ist der erste Teil abgeschlossen. In [Übung 2](2_DocumentDB_Data_Models.md) wird das "Schema" näher betrachtet.
 
@@ -210,7 +213,7 @@ Der Query könnte dann wie folgt inline ausgeführt werden.
 db.movies.mapReduce(mapFunction, reduceFunction, {out: {inline: 1}, query: {}})
 ```
 
-![MongoDB MapReduce](gfx/MapReduce_Query1.png)
+![MongoDB MapReduce](gfx/MapReduce_Query1.PNG)
 
 
 

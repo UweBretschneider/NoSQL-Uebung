@@ -28,7 +28,7 @@ Häufig existieren mehrere Tools für die jeweiligen DBMS. In der Übung wird ha
 **Vorbereitung ausgewählter Datensätze**: Für die Veranstaltung werden verschiedene Datensätze verwendet, um die Besonderheiten der jeweiligen DBMS kennenzulernen. Die Datensätze sind im Ordner [Datasets](Datasets/Datasets.md) beschrieben.
 
 ## (2) Diskussion Datenmodellierung
-Ein Datenmodell orientiert sich an der abzubildenen Realität, den tatsächlich stattfindenen Datenflüssen sowie den Anwendungsfällen bzw. Workloads, um möglichst effizientes Lesen und Schreiben von Datensätzen zu ermöglichen.
+Ein Datenmodell orientiert sich an der abzubildenden Realität, den tatsächlich stattfindenden Datenflüssen sowie den Anwendungsfällen bzw. Workloads, um möglichst effizientes Lesen und Schreiben von Datensätzen zu ermöglichen.
 
 Typischerweise existiert daher nicht "das eine Datenmodell", sondern mehrere für den jeweiligen Anwendungsfall passende Alternativen mit unterschiedlichen Kompromissen. Häufig wird eine schrittweise Modellierung, wie in der Abbildung dargestellt angewandt, um mithilfe eines logischen Datenmodells von dem konkreten DBMS zu abstrahieren. (Meier & Kaufmann (2019), S. 27)
 

@@ -30,7 +30,7 @@ Im relationalen Modell wird Normalisierung angewendet (oft 3. Normalform oder Ba
 
 Im obigen Modell ist die Occupation (der Beruf) als Attribut eines Nutzers modelliert.
 
-> **_Aufgabe 2.1:_** Was ist im relationalen Modell nötig, um einen Nutzer einschließlich seines Berufs zu selektieren? Warum könnte die Variante des Dokument DBMS unter Performance-Aspekten die bessere Wahl sein?
+> **_Aufgabe 2.1:_** Was ist im relationalen Modell nötig, um einen Nutzer einschließlich seines Berufs (occupation) zu selektieren? Warum könnte die Variante des Dokument DBMS unter Performance-Aspekten die bessere Wahl sein?
 
 > **_Aufgabe 2.2:_** Wie verhält sich das relationale Modell, wenn sich Attribute eines verknüpften Objekts ändern, z.B. der Name des Berufs? Inwieweit fällt dies unter den Aspekt der Datenintegrität? Hat dies Vorteile hinsichtlich dem Aspekt der Konsistenz, insbesondere für analytische Zwecke?
 
@@ -66,9 +66,9 @@ Im Dokument-orientierten DBMS wurde diese Modellierungsvariante gewählt:
 
 ![Document Model Ratings](../gfx/Document_Model_Ratings.png)
 
-> **_Aufgabe 2.7:_** Wie verhält sich diese Variante bei der mehrfachen Vergabe von Ratings für den gleichen Film? Worin sehen Sie unterschiede bezüglich der Abbildung von Beziehungen als eingebettes Objekt bzw. als Referenz. Welche Vor- und Nachteile resultieren daraus? Denken Sie auch an die Analyse historischer Daten im Rahmen von Data Science Projekten.
+> **_Aufgabe 2.7:_** Wie verhält sich diese Variante bei der mehrfachen Vergabe von Ratings für den gleichen Film?
 
-Eine weitere Besonderheit ist die modellierung eines Films als eingebettes Objekt. 
+Eine weitere Besonderheit ist die Modellierung eines Films als eingebettes Objekt. 
 
 > **_Aufgabe 2.8:_** Nehmen wir an, ein Film Objekt hat sich im Zeitverlauf geändert, es wurden weitere Genres hinzugefügt. Angenommen, dies hat einen Nutzer dazu bewogen, den Film nochmals zu bewerten. Könnte man dies anhand des Dokument-Modells einfach feststellen?
 
