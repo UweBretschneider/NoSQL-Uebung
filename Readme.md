@@ -32,7 +32,7 @@ Ein Datenmodell orientiert sich an der abzubildenen Realität, den tatsächlich 
 
 Typischerweise existiert daher nicht "das eine Datenmodell", sondern mehrere für den jeweiligen Anwendungsfall passende Alternativen mit unterschiedlichen Kompromissen. Häufig wird eine schrittweise Modellierung, wie in der Abbildung dargestellt angewandt, um mithilfe eines logischen Datenmodells von dem konkreten DBMS zu abstrahieren. (Meier & Kaufmann (2019), S. 27)
 
-![DB Modeling](gfx/Modeling_Concept.png)
+![DB Modeling](gfx/Modeling_Concept.PNG)
 
 Die Datenmodelle unterscheiden sich typischerweise in Abhängigkeit des eingesetzen DBMS, womit Vor- und Nachteile einhergehen. In diesem Abschnitt werden Varianten diskutiert und kritisch gewürdigt.
 
